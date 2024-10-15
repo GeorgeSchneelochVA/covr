@@ -281,9 +281,11 @@ environment_coverage <- function(
   env = parent.frame(),
   test_files,
   line_exclusions = NULL,
-  function_exclusions = NULL) {
+  function_exclusions = NULL, exec_env = NULL) {
 
-  exec_env <- new.env(parent = env)
+  if (is.null(exec_env)) {
+    exec_env <- new.env(parent = env)
+  }
 
   trace_environment(env)
   on.exit({
